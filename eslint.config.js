@@ -39,5 +39,23 @@ export default [
     languageOptions: {
       parser: tseslint.parser,
     },
+    rules: {
+      // Keep TypeScript consistently formatted.
+      semi: ["error", "always"],
+      quotes: ["error", "single", { avoidEscape: true }],
+      "comma-dangle": ["error", "always-multiline"],
+      "object-curly-spacing": ["error", "always"],
+    },
+  },
+
+  // Apply the same source-formatting rules to Astro frontmatter.
+  {
+    files: ["**/*.astro"],
+    rules: {
+      semi: ["error", "always"],
+      quotes: ["error", "single", { avoidEscape: true }],
+      "comma-dangle": ["error", "always-multiline"],
+      "object-curly-spacing": ["error", "always"],
+    },
   },
 ];

@@ -51,9 +51,28 @@ export async function getAllGameIds(db: Database): Promise<number[]> {
 }
 ```
 
+- Every exported function in `db/` and `src/lib/` must have a TSDoc/JSDoc comment.
+- API comments should state the function's purpose, document each parameter with `@param`, and document the returned value with `@returns`. Include the injectable `db` parameter in the description so callers understand that tests should provide an in-memory database.
+- Comments should explain intent or an important constraint, not paraphrase the implementation. Keep them current when the function changes.
 - Always `order by` a stable column (title) so static builds are deterministic.
 - Map raw rows to the app-facing `Game`/`Publisher`/`Category` types in one place; don't leak Drizzle row shapes into components.
 - Keep ordering/lookup logic in `games.ts`, not in pages.
+
+Example:
+
+```ts
+/**
+ * Return every game ordered by title for deterministic static output.
+ *
+ * @param db - The injectable Drizzle database; tests should provide an in-memory client.
+ * @returns All games mapped to the app-facing shape.
+ */
+export async function getAllGames(db: Database): Promise<Game[]> {
+  // Query ordering is part of the static-build contract.
+  const rows = await baseGamesQuery(db).orderBy(asc(games.title));
+  return rows.map(mapGame);
+}
+```
 
 ## Determinism
 
