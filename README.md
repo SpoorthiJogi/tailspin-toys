@@ -124,6 +124,15 @@ start Astro. When Astro reports its local URL, the app opens it in the browser
 canvas automatically. The menu also provides static build and type-check
 commands for on-demand validation.
 
+## Coding Standards
+
+The canonical coding standards are maintained in the [Copilot instruction files](.github/instructions/). In particular:
+
+- Comment intent and non-obvious decisions, not code mechanics; keep comments current.
+- Add TSDoc/JSDoc to every exported function in `db/` and `src/lib/`, including its parameters and return value. Keep the injectable `db` argument documented for testability.
+- Define and document a typed `Props` interface for every reusable `.astro` component.
+- Use the TypeScript formatting conventions enforced by ESLint: single quotes, semicolons, multiline trailing commas, and spaces inside object braces.
+
 ## License 
 
 This project is licensed under the terms of the MIT open source license. Please refer to the [LICENSE](./LICENSE) for the full terms.

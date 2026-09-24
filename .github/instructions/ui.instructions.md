@@ -20,6 +20,19 @@ Refer to technology-specific instruction files:
 
 ## Core Principles
 
+### Comments and Documentation
+
+- Comment intent, constraints, and non-obvious decisions — explain *why* the code exists rather than restating *what* the code already says.
+- Prefer clear names and simple structure over comments that narrate straightforward mechanics.
+- Keep comments next to the behavior they explain. Update or remove comments in the same change as the related code; an outdated comment is a bug.
+- Use TSDoc/JSDoc for exported APIs and component contracts. Document the purpose, parameters, and return value where applicable.
+
+### TypeScript Formatting
+
+- Use single quotes for TypeScript strings, terminate statements with semicolons, and include trailing commas in multiline collections and parameter lists.
+- Use spaces inside object braces (`{ value }`) and keep formatting consistent with the ESLint rules in `eslint.config.js`.
+- Run `npm run lint` before submitting changes; do not bypass formatting errors with disable comments.
+
 ### Testability
 
 - Every interactive element MUST include a `data-testid` attribute
@@ -49,7 +62,7 @@ Refer to technology-specific instruction files:
 - Create reusable components for common UI patterns
 - Keep components focused on a single responsibility
 - Use props for configuration, not duplication
-- Document component APIs with TypeScript types
+- Document component APIs with a typed `Props` interface and a short description of each non-obvious prop
 
 ## Development Workflow
 
